@@ -1,0 +1,19 @@
+{
+  "exp_name": "r100vgc",
+  "max_epochs": 3,
+  "epoch_size": 10,
+  "learning_rate": 0.001,
+  "lr_steps": [40000, 60000, 80000],
+  "momentum": 0.9,
+  "batch_size": 16,
+  "state_size": [160, 160, 3],
+  "max_to_keep": 5,
+  "net_depth": 10,
+  "weight_deacy": 5e-4,
+  "dropout_rate": 0.4,
+  "train_data_path": "/disk1/home/xiaj/res/face/training/VGGFace2_disk2-GCWebFace_mainland_HongkongTaiwan.csv",
+  "val_freq": 1,
+  "eval_freq": 1,
+  "summary_interval": 100,
+  "debug": 1
+}

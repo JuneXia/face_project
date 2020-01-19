@@ -11,6 +11,8 @@
   "net_depth": 10,
   "weight_deacy": 5e-4,
   "dropout_rate": 0.4,
+  "embedding_size": 512,
+
   "train_data_path": "/disk1/home/xiaj/res/face/training/VGGFace2_disk2-GCWebFace_mainland_HongkongTaiwan.csv",
   "val_freq": 1,
   "eval_freq": 1,

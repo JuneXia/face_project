@@ -18,7 +18,7 @@ class BaseTrain:
     def train(self, max_epochs=100, epoch_size=1000):
         # for cur_epoch in range(self.model.cur_epoch_tensor.eval(self.sess), self.config.max_epochs + 1, 1):
         for cur_epoch in range(1, max_epochs + 1):
-            self.train_epoch(epoch_size)
+            self.train_epoch(cur_epoch, epoch_size)
             if self.val_data and (cur_epoch % self.val_freq == 0):
                 self.validation()
             if self.eval_data and (cur_epoch % self.eval_freq == 0):
@@ -26,7 +26,7 @@ class BaseTrain:
 
             self.sess.run(self.model.increment_cur_epoch_tensor)
 
-    def train_epoch(self, epoch_size=1000):
+    def train_epoch(self, cur_epoch, epoch_size=1000):
         """
         implement the logic of epoch:
         -loop over the number of iterations in the config and call the train step

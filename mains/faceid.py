@@ -36,7 +36,7 @@ def main():
     confproto.gpu_options.allow_growth = True
     sess = tf.Session(config=confproto)
 
-    if config.debug == 1:
+    if config.debug == True:
         end_idx = 10000
     else:
         end_idx = None

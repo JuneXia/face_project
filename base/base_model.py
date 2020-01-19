@@ -4,6 +4,8 @@ import tensorflow as tf
 class BaseModel:
     def __init__(self, config):
         self.config = config
+        self.summary_histogram = {}
+        self.summary_scalar = {}
         # init the global step
         self.init_global_step()
         # init the epoch counter
@@ -34,6 +36,49 @@ class BaseModel:
         # DON'T forget to add the global step tensor to the tensorflow trainer
         with tf.variable_scope('global_step'):
             self.global_step_tensor = tf.Variable(0, trainable=False, name='global_step')
+
+    def add_summary(self, summarys):
+        raise Exception('发现有的张量shape是未知的，所以无法通过其shape来判断是scalar还是histgoram。\
+                         所以又重写了add_summary_scalar和add_summary_histogram')
+
+        if type(summarys) == dict:
+            for k, v in summarys.items():
+                if len(v.get_shape().as_list()) == 0:
+                    self.summary_scalar[k] = v
+                else:
+                    self.summary_histogram[k] = v
+        elif type(summarys) == list:
+            for tensor in summarys:
+                if len(tensor.get_shape().as_list()) == 0:
+                    self.summary_scalar[tensor.op.name] = tensor
+                else:
+                    self.summary_histogram[tensor.op.name] = tensor
+        else:
+            raise Exception('not supported temporary!')
+
+    def add_summary_scalar(self, summarys):
+        if type(summarys) == dict:
+            for k, v in summarys.items():
+                self.summary_scalar[k] = v
+        elif type(summarys) == list:
+            # raise Exception('not supported temporary!')
+
+            for tensor in summarys:
+                self.summary_scalar[tensor.op.name] = tensor
+        else:
+            raise Exception('not supported temporary!')
+
+    def add_summary_histgoram(self, summarys):
+        if type(summarys) == dict:
+            for k, v in summarys.items():
+                self.summary_histogram[k] = v
+        elif type(summarys) == list:
+            # raise Exception('not supported temporary!')
+
+            for tensor in summarys:
+                self.summary_histogram[tensor.op.name] = tensor
+        else:
+            raise Exception('not supported temporary!')
 
     def init_saver(self):
         # just copy the following line in your child class

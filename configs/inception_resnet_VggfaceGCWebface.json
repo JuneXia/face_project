@@ -1,0 +1,34 @@
+{
+  "project_path": "/disk1/home/xiaj/dev/alg_verify/face/face_project",
+  "exp_name": "inception_resnet_v2",
+  "max_epochs": 300,
+  "epoch_size": 1000,
+  "learning_rate": -1,
+  "learning_rate_schedule_file": "configs/learning_rate_schedule.txt",
+  "lr_steps": [40000, 60000, 80000],
+  "momentum": 0.9,
+  "batch_size": 90,
+  "state_size": [160, 160, 3],
+  "max_to_keep": 5,
+  "net_depth": 10,
+
+  "weight_decay": 5e-4,
+  "moving_average_decay": 0.9999,
+  "dropout_rate": 0.4,
+  "embedding_size": 512,
+
+  "prelogits_norm_p": 1.0,
+  "prelogits_norm_loss_factor": 5e-4,
+
+  "optimizer": "ADAM",
+
+  "learning_rate_decay_epochs": 100,
+  "learning_rate_decay_factor": 1.0,
+
+  "train_data_path": "/disk1/home/xiaj/res/face/training/VGGFace2_disk2-GCWebFace_mainland_HongkongTaiwan.csv",
+  "val_freq": 1,
+  "eval_freq": 1,
+  "summary_interval": 100,
+  "log_histograms": true,
+  "debug": false
+}
